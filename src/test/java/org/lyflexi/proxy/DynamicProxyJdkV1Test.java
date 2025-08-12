@@ -7,6 +7,7 @@ import org.lyflexi.proxy.dynamic_proxy_jdk_v1.service.OtherUnsatisfiedImpl;
 import org.lyflexi.proxy.dynamic_proxy_jdk_v1.service.ITestService;
 
 import org.lyflexi.proxy.dynamic_proxy_jdk_v1.service.TestServiceImpl;
+import org.lyflexi.proxy.dynamic_proxy_jdk_v1.service.TestServiceImpl2;
 import org.lyflexi.proxy.dynamic_proxy_jdk_v2.service.IMyService;
 import org.lyflexi.proxy.dynamic_proxy_jdk_v2.service.MyServiceImpl;
 import org.lyflexi.proxy.dynamic_proxy_jdk_v3.proxy.MapperProxyFactory;
@@ -32,6 +33,23 @@ public class DynamicProxyJdkV1Test {
 
         // 通过代理对象调用方法
         proxy.delete(1);
+
+
+        // 创建目标对象
+        ITestService target2 = new TestServiceImpl2();
+
+        // 创建 InvocationHandler
+        MyInvocationHandler handler2 = new MyInvocationHandler(target2);
+
+        // 设置目标接口类型，并创建代理对象
+        ITestService proxy2 = (ITestService) Proxy.newProxyInstance(
+                ITestService.class.getClassLoader(),  // 类加载器
+                new Class[]{ITestService.class},     // 接口列表
+                handler2                           // InvocationHandler
+        );
+
+        // 通过代理对象调用方法
+        proxy2.delete(1);
 
     }
 
