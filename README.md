@@ -1,4 +1,4 @@
-# designPartens-practice
+ # designPartens-practice
 
 ## 三大工厂模式	
 适用场景：
@@ -92,12 +92,12 @@ try {
 
 ## 委派模式
 适用场景：委派模式和代理模式想象, 都可以增强逻辑, 区别在于实现方式
-- 代理模式: jdk代理机制, 实现更加底层
-- 委托模式: 委托模式是找外包干具体的活
+- 代理模式: 委托类本身负责增强实现
+- 委托模式: 委托类本身不负责增强实现，它负责找外包干具体的活（被委托者）
 
 以**Boss发送指令, Manager根据指令选择具体的Worker干活**, 具体两种实现方式:
 - 面向过程: 由方法参数传入被委托者引用delegate, 执行delegate
-- 面向对象: 委托者是当前类, 被委托者delegate是由构造创建初始化的成员变量, 此后被委托者delegate接管委托者的api
+- 面向对象: 委托者是当前类, 被委托者delegate是由构造创建初始化的成员变量, 作为最终的执行者，甚至是接管委托者的API
 
 其中面向对象参见BodyInputStream构造byte[]初始化了委托对象InputStream(ByteArrayInputStream) delegate
 ```java
