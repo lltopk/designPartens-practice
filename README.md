@@ -8,9 +8,6 @@
 适用场景：
 - 可插拔式服务
 
-## 委派模式	
-适用场景：
-
 ## 模板方法模式
 适用场景：
 - 适用于框架的骨架设计
@@ -93,6 +90,86 @@ try {
 }
 ```
 
+## 委派模式
+适用场景：委派模式和代理模式想象, 都可以增强逻辑, 区别在于实现方式
+- 代理模式: jdk代理机制, 实现更加底层
+- 委托模式: 委托模式是找外包干具体的活
+
+以**Boss发送指令, Manager根据指令选择具体的Worker干活**, 具体两种实现方式:
+- 面向过程: 由方法参数传入被委托者引用delegate, 执行delegate
+- 面向对象: 委托者是当前类, 被委托者delegate是由构造创建初始化的成员变量, 此后被委托者delegate接管委托者的api
+
+其中面向对象参见BodyInputStream构造byte[]初始化了委托对象InputStream(ByteArrayInputStream) delegate
+```java
+	private static class BodyInputStream extends ServletInputStream {
+
+		private final InputStream delegate;
+
+		public BodyInputStream(byte[] body) {
+			this.delegate = new ByteArrayInputStream(body);
+		}
+
+		@Override
+		public boolean isFinished() {
+			return false;
+		}
+
+		@Override
+		public boolean isReady() {
+			return true;
+		}
+
+		@Override
+		public void setReadListener(ReadListener readListener) {
+			throw new UnsupportedOperationException();
+		}
+
+		@Override
+		public int read() throws IOException {
+			return this.delegate.read();
+		}
+
+		@Override
+		public int read(byte[] b, int off, int len) throws IOException {
+			return this.delegate.read(b, off, len);
+		}
+
+		@Override
+		public int read(byte[] b) throws IOException {
+			return this.delegate.read(b);
+		}
+
+		@Override
+		public long skip(long n) throws IOException {
+			return this.delegate.skip(n);
+		}
+
+		@Override
+		public int available() throws IOException {
+			return this.delegate.available();
+		}
+
+		@Override
+		public void close() throws IOException {
+			this.delegate.close();
+		}
+
+		@Override
+		public synchronized void mark(int readlimit) {
+			this.delegate.mark(readlimit);
+		}
+
+		@Override
+		public synchronized void reset() throws IOException {
+			this.delegate.reset();
+		}
+
+		@Override
+		public boolean markSupported() {
+			return this.delegate.markSupported();
+		}
+	}
+```
 
 ## 装饰者模式	
 适用场景：

@@ -1,17 +1,16 @@
-package org.lyflexi.delegatePattern;
+package org.lyflexi.delegatePattern.withVariableConstruct;
 
-/**
- * @Author: ly
- * @Date: 2024/3/13 17:17
- */
+import org.lyflexi.delegatePattern.common.EmployeeA;
+import org.lyflexi.delegatePattern.common.EmployeeB;
+import org.lyflexi.delegatePattern.common.IEmployee;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class Manager implements IEmployee {
-    private Map<String,IEmployee> workTargetMap = new HashMap<>();
+public class ManagerDelegatingEmployees implements IEmployee{
+    private Map<String, IEmployee> workTargetMap = new HashMap<>();
 
-    public Manager() {
+    public ManagerDelegatingEmployees() {
         workTargetMap.put("部署项目",new EmployeeA());
         workTargetMap.put("修复BUG",new EmployeeB());
     }
@@ -26,4 +25,3 @@ public class Manager implements IEmployee {
         employee.work(taskCommand);
     }
 }
-

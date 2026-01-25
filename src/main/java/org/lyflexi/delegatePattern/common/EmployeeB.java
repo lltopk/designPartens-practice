@@ -1,4 +1,4 @@
-package org.lyflexi.delegatePattern;
+package org.lyflexi.delegatePattern.common;
 
 /**
  * @Author: ly
