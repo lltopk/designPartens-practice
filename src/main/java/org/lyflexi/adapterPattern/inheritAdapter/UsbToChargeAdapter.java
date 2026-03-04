@@ -1,4 +1,4 @@
-package org.lyflexi.adapterPattern.classAdapter;
+package org.lyflexi.adapterPattern.inheritAdapter;
 
 import org.lyflexi.adapterPattern.adaptee.UsbSource;
 import org.lyflexi.adapterPattern.target.IChargeTarget;

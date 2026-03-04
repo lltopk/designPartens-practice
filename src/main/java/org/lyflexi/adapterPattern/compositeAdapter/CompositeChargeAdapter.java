@@ -1,4 +1,4 @@
-package org.lyflexi.adapterPattern.objectAdapter;
+package org.lyflexi.adapterPattern.compositeAdapter;
 
 import org.lyflexi.adapterPattern.adaptee.OldPowerAdapter;
 import org.lyflexi.adapterPattern.adaptee.UsbSource;

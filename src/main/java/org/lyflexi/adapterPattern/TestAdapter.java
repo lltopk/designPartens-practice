@@ -1,7 +1,10 @@
 package org.lyflexi.adapterPattern;
 
-import org.lyflexi.adapterPattern.classAdapter.UsbToChargeAdapter;
-import org.lyflexi.adapterPattern.objectAdapter.CompositeChargeAdapter;
+import org.lyflexi.adapterPattern.delegateAdapter.DelegateInterfaceAdapter;
+import org.lyflexi.adapterPattern.delegateAdapter.adapteeInterfece.AdapteeInterfaceImpl1;
+import org.lyflexi.adapterPattern.delegateAdapter.adapteeInterfece.AdapteeInterfaceImpl2;
+import org.lyflexi.adapterPattern.inheritAdapter.UsbToChargeAdapter;
+import org.lyflexi.adapterPattern.compositeAdapter.CompositeChargeAdapter;
 import org.lyflexi.adapterPattern.target.IChargeTarget;
 
 /**
@@ -22,6 +25,9 @@ public class TestAdapter {
         
         // 测试对象适配器的多接口适配能力
         testObjectAdapterMulti();
+
+        // 测试委托适配器- 组合接口
+        testDelegateAdapter();
     }
     
     /**
@@ -67,5 +73,15 @@ public class TestAdapter {
         multiAdapter.charge("usb");
         multiAdapter.charge("vga");
         multiAdapter.charge("old");
+    }
+
+    private static void testDelegateAdapter() {
+        System.out.println("【测试委托适配器- 接口组合】");
+
+        DelegateInterfaceAdapter delegateInterfaceAdapter = new DelegateInterfaceAdapter(new AdapteeInterfaceImpl1());
+        delegateInterfaceAdapter.charge();
+
+        delegateInterfaceAdapter = new DelegateInterfaceAdapter(new AdapteeInterfaceImpl2());
+        delegateInterfaceAdapter.charge();
     }
 }
